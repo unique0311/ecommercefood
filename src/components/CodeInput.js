@@ -1,13 +1,18 @@
-import React from "react";
-import { StyleSheet, TextInput } from "react-native";
+import React from 'react';
+import {StyleSheet, TextInput} from 'react-native';
 
-import Fonts from "../theme/Fonts";
+import Fonts from '../theme/Fonts';
 
-const CodeInput = ({ value, onChange }) => {
+const CodeInput = ({value, onChange}) => {
   return (
-    <TextInput maxLength={1} style={styles.codeInput} value={value} onChangeText = {onChange} />
-  )
-}
+    <TextInput
+      maxLength={1}
+      style={styles.codeInput}
+      value={value}
+      onChangeText={onChange}
+    />
+  );
+};
 
 const styles = StyleSheet.create({
   codeInput: {
@@ -21,7 +26,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     textAlign: 'center',
     padding: 0,
-  }
-})
+  },
+});
 
 export default CodeInput;

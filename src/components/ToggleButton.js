@@ -1,45 +1,54 @@
-
-import React, { useState, useRef } from 'react';
+import React, {useState, useRef} from 'react';
 import {
   View,
   StyleSheet,
   Animated,
   TouchableOpacity,
-  Easing
+  Easing,
 } from 'react-native';
 
-
 const ToggleButton = () => {
-
   const positionButton = useRef(new Animated.Value(0)).current;
 
   const [isOn, setIsOn] = useState(false);
 
   const startAnimToOff = () => {
-    Animated.timing(positionButton,{
-      toValue:0,
+    Animated.timing(positionButton, {
+      toValue: 0,
       duration: 100,
       useNativeDriver: false,
-      easing:Easing.ease
-    }).start()
+      easing: Easing.ease,
+    }).start();
   };
 
   const startAnimToOn = () => {
-  Animated.timing(positionButton,{
-      toValue:1,
+    Animated.timing(positionButton, {
+      toValue: 1,
       duration: 100,
       useNativeDriver: false,
-      easing: Easing.ease
-    }).start()
+      easing: Easing.ease,
+    }).start();
   };
 
-  const positionInterPol = positionButton.interpolate({inputRange:[0,1],outputRange:[0,13]})
+  const positionInterPol = positionButton.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 13],
+  });
 
-  const backgroundColorAnim = positionButton.interpolate({inputRange:[0,1],outputRange:["#acacac","#08d9d6"]})
+  const backgroundColorAnim = positionButton.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['#acacac', '#08d9d6'],
+  });
 
-  const initialOpacityOn = positionButton.interpolate({inputRange:[0,1],outputRange:[0,1]})
+  const initialOpacityOn = positionButton.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 1],
+  });
 
-  const initialOpacityOff = positionButton.interpolate({inputRange:[0,1],outputRange:[1,0]})
+  const initialOpacityOff = positionButton.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, 0],
+  });
 
   const onPress = () => {
     if (isOn) {
@@ -53,11 +62,18 @@ const ToggleButton = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={{height:20,width:35}}  activeOpacity={0.9} onPress={onPress} >
-      <Animated.View style={[styles.mainStyes,{
-        backgroundColor:backgroundColorAnim
-      }]} >
-        {/* <Animated.Text
+      <TouchableOpacity
+        style={{height: 20, width: 35}}
+        activeOpacity={0.9}
+        onPress={onPress}>
+        <Animated.View
+          style={[
+            styles.mainStyes,
+            {
+              backgroundColor: backgroundColorAnim,
+            },
+          ]}>
+          {/* <Animated.Text
           style={[
             styles.eahcStyles,
             {
@@ -75,16 +91,23 @@ const ToggleButton = () => {
           ]}>
           OFF
         </Animated.Text> */}
-        <Animated.View style={[styles.basicStyle,{
-          transform:[{
-            translateX:positionInterPol
-          }]
-        }]} />
-          </Animated.View>
+          <Animated.View
+            style={[
+              styles.basicStyle,
+              {
+                transform: [
+                  {
+                    translateX: positionInterPol,
+                  },
+                ],
+              },
+            ]}
+          />
+        </Animated.View>
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -93,7 +116,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     // backgroundColor: '#ecf0f1',
     width: 35,
-    height: 20
+    height: 20,
     // padding: 8,
   },
   basicStyle: {
